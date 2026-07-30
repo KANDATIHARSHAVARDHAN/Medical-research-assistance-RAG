@@ -1,0 +1,44 @@
+[
+  {
+    "pmid": "AHA-ACC-2024-HTN",
+    "doi": "10.1161/CIR.0000000000001150",
+    "title": "2024 AHA/ACC Clinical Practice Guideline for the Management of High Blood Pressure in Adults",
+    "authors": "Whelton PK, Carey RM, Aronow WS, et al.",
+    "journal": "Circulation / JACC",
+    "year": 2024,
+    "study_type": "Clinical Practice Guideline",
+    "disease": "Hypertension & CKD",
+    "drug": "ACEi, ARB, CCB, Thiazide",
+    "source": "AHA/ACC Guidelines",
+    "citation_count": 850,
+    "chunk_text": "For adults with Stage 2 Hypertension (BP >= 140/90 mmHg) and Chronic Kidney Disease or Diabetes, first-line therapy requires prompt initiation of two antihypertensive agents of different classes. An ACE inhibitor (or ARB) is specifically recommended in CKD patients with albuminuria. Combination with a dihydropyridine CCB (amlodipine) or thiazide-like diuretic (chlorthalidone) achieves optimal 24-hour blood pressure control."
+  },
+  {
+    "pmid": "IDSA-CAP-2023",
+    "doi": "10.1164/rccm.201908-1581ST",
+    "title": "IDSA/ATS Clinical Practice Guideline for Diagnosis and Treatment of Community-Acquired Pneumonia",
+    "authors": "Metlay JP, Waterer GW, Long AC, et al.",
+    "journal": "American Journal of Respiratory and Critical Care Medicine",
+    "year": 2023,
+    "study_type": "Clinical Practice Guideline",
+    "disease": "Community-Acquired Pneumonia",
+    "drug": "Ceftriaxone, Azithromycin, Levofloxacin",
+    "source": "IDSA Guidelines",
+    "citation_count": 620,
+    "chunk_text": "In adults with severe Community-Acquired Pneumonia (CAP) requiring ICU admission, IDSA guidelines strongly recommend empiric dual coverage with a potent beta-lactam (ceftriaxone 2g IV daily or ampicillin-sulbactam) plus either IV azithromycin (500mg daily) or a respiratory fluoroquinolone (levofloxacin 750mg daily). Routine anaerobic coverage for aspiration is not recommended unless lung abscess or empyema is documented."
+  },
+  {
+    "pmid": "ADA-CARE-2024",
+    "doi": "10.2337/dc24-S001",
+    "title": "ADA Standards of Care in Diabetes—2024: Comprehensive Medical Evaluation and Assessment",
+    "authors": "American Diabetes Association Professional Practice Committee",
+    "journal": "Diabetes Care",
+    "year": 2024,
+    "study_type": "Clinical Practice Guideline",
+    "disease": "Type 2 Diabetes Mellitus",
+    "drug": "Metformin, SGLT2i, GLP-1RA",
+    "source": "ADA Guidelines",
+    "citation_count": 1950,
+    "chunk_text": "In patients with Type 2 Diabetes and established ASCVD, Heart Failure, or Chronic Kidney Disease (eGFR 20-60 or UACR > 30 mg/g), therapy should include an SGLT2 inhibitor and/or GLP-1 receptor agonist with proven cardiovascular/renal benefit, independent of baseline HbA1c or metformin use. Relaxation of glycemic targets (HbA1c < 8.0-8.5%) is recommended for older adults with severe comorbid conditions."
+  }
+]

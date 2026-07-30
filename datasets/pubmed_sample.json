@@ -1,0 +1,72 @@
+[
+  {
+    "pmid": "31554198",
+    "doi": "10.1056/NEJMoa1905819",
+    "title": "Renal and Cardiovascular Outcomes with Canagliflozin in Type 2 Diabetes and Nephropathy (CREDENCE)",
+    "authors": "Perkovic V, Jardine MJ, Neal B, et al.",
+    "journal": "New England Journal of Medicine",
+    "year": 2019,
+    "study_type": "Randomized Controlled Trial",
+    "disease": "Diabetic Kidney Disease",
+    "drug": "Canagliflozin",
+    "source": "PubMed",
+    "citation_count": 1420,
+    "chunk_text": "In patients with type 2 diabetes and kidney disease, the risk of kidney failure and cardiovascular events was significantly lower in the canagliflozin group than in the placebo group at a median follow-up of 2.62 years. Relative risk of the primary composite renal endpoint (end-stage kidney disease, doubling of serum creatinine, or renal/CV death) was reduced by 30% (HR 0.70; 95% CI, 0.59 to 0.82; P < 0.001). SGLT2 inhibition demonstrates robust renoprotection independent of glycemic control."
+  },
+  {
+    "pmid": "32970396",
+    "doi": "10.1056/NEJMoa2024816",
+    "title": "Dapagliflozin in Patients with Chronic Kidney Disease (DAPA-CKD)",
+    "authors": "Heerspink HJL, Stefánsson BV, Correa-Rotter R, et al.",
+    "journal": "New England Journal of Medicine",
+    "year": 2020,
+    "study_type": "Randomized Controlled Trial",
+    "disease": "Chronic Kidney Disease",
+    "drug": "Dapagliflozin",
+    "source": "PubMed",
+    "citation_count": 1180,
+    "chunk_text": "Among patients with chronic kidney disease, regardless of the presence or absence of diabetes, the risk of a composite of a sustained decline in estimated GFR of at least 50%, end-stage kidney disease, or death from renal or cardiovascular causes was significantly lower with dapagliflozin (10 mg daily) than with placebo (HR 0.61; 95% CI, 0.51 to 0.72; P < 0.001). Mortality from any cause was reduced by 31%."
+  },
+  {
+    "pmid": "35178422",
+    "doi": "10.1016/S0140-6736(22)00516-X",
+    "title": "Oral Nirmatrelvir and Ritonavir for High-Risk Non-hospitalized Patients with Covid-19 (EPIC-HR)",
+    "authors": "Hammond J, Leister-Tebbe H, Gardner A, et al.",
+    "journal": "The Lancet Respiratory Medicine",
+    "year": 2022,
+    "study_type": "Randomized Controlled Trial",
+    "disease": "COVID-19",
+    "drug": "Paxlovid (Nirmatrelvir/Ritonavir)",
+    "source": "PubMed",
+    "citation_count": 890,
+    "chunk_text": "Treatment of symptomatic COVID-19 with oral nirmatrelvir plus ritonavir (Paxlovid) resulted in an 89% reduction in COVID-19-related hospitalization or death compared to placebo in non-hospitalized high-risk adults when initiated within 3 days of symptom onset. Ritonavir acts as a potent irreversible CYP3A4 inhibitor to boost nirmatrelvir serum levels, necessitating drug interaction screening."
+  },
+  {
+    "pmid": "25176015",
+    "doi": "10.1056/NEJMoa1409077",
+    "title": "Angiotensin-Neprilysin Inhibition versus Enalapril in Heart Failure (PARADIGM-HF)",
+    "authors": "McMurray JJ, Packer M, Desai AS, et al.",
+    "journal": "New England Journal of Medicine",
+    "year": 2014,
+    "study_type": "Randomized Controlled Trial",
+    "disease": "Heart Failure",
+    "drug": "Sacubitril/Valsartan (LCZ696)",
+    "source": "PubMed",
+    "citation_count": 2150,
+    "chunk_text": "In patients with heart failure and reduced ejection fraction (HFrEF, LVEF <= 40%), sacubitril/valsartan (ARNI) was superior to enalapril in reducing the risk of death from cardiovascular causes and heart failure hospitalizations (HR 0.80; 95% CI 0.73 to 0.87; P < 0.001). All-cause mortality was also significantly reduced by 16%."
+  },
+  {
+    "pmid": "29658856",
+    "doi": "10.1056/NEJMoa1801941",
+    "title": "Pembrolizumab plus Chemotherapy in Metastatic Non-Small-Cell Lung Cancer (KEYNOTE-189)",
+    "authors": "Gandhi L, Rodríguez-Abreu D, Gadgeel S, et al.",
+    "journal": "New England Journal of Medicine",
+    "year": 2018,
+    "study_type": "Randomized Controlled Trial",
+    "disease": "Non-Small Cell Lung Cancer",
+    "drug": "Pembrolizumab",
+    "source": "PubMed",
+    "citation_count": 3100,
+    "chunk_text": "Among patients with previously untreated metastatic non-squamous NSCLC without EGFR or ALK mutations, adding pembrolizumab to standard chemotherapy with pemetrexed and platinum substantially prolonged overall survival (12-month OS rate 69.2% vs 49.4%; HR 0.49; 95% CI 0.38 to 0.64; P < 0.001) and progression-free survival across all PD-L1 expression categories."
+  }
+]

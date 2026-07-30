@@ -1,0 +1,16 @@
+# Medical Research Assistant RAG - Backend Dependencies
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+sentence-transformers>=2.2.2
+rank_bm25>=0.2.2
+pydantic>=2.5.0
+python-dotenv>=1.0.0
+pinecone>=5.0.0
+requests>=2.31.0
+numpy>=1.24.0
+sse-starlette>=1.8.0
+jinja2>=3.1.2
+torch>=2.1.0
+
+# RAGAS Evaluation Framework (uses dedicated RAGAS_EVAL_API_KEY)
+ragas>=0.1.0

@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "category": "Nephrology & Diabetes",
+    "question": "What is the evidence comparing SGLT2 inhibitors versus GLP-1 receptor agonists in reducing diabetic kidney disease progression?",
+    "ground_truth": "Large RCTs (CREDENCE, DAPA-CKD) demonstrate that SGLT2 inhibitors reduce renal endpoint risk by 30-39% independent of glycemic control, whereas GLP-1 RAs primarily reduce cardiovascular endpoints and albuminuria progression."
+  },
+  {
+    "id": 2,
+    "category": "Pharmacology & DDI",
+    "question": "What are the critical contraindications and drug interactions for Paxlovid (ritonavir-boosted nirmatrelvir) when co-administered with statins?",
+    "ground_truth": "Paxlovid significantly inhibits CYP3A4, causing dangerous serum concentration spikes of CYP3A4-dependent statins (simvastatin, lovastatin). These statins must be withheld 12 hours prior to and during 5-day Paxlovid treatment."
+  },
+  {
+    "id": 3,
+    "category": "Cardiology Guidelines",
+    "question": "What are the 2024 AHA/ACC first-line antihypertensive drug recommendations for patients with Stage 2 Hypertension and chronic kidney disease?",
+    "ground_truth": "AHA/ACC guidelines recommend initiating dual therapy with an ACE inhibitor or ARB plus a calcium channel blocker (CCB) or thiazide-like diuretic in patients with hypertension and CKD (Stage 2 or albuminuria)."
+  },
+  {
+    "id": 4,
+    "category": "Oncology",
+    "question": "What is the overall survival benefit of adding Pembrolizumab to chemotherapy in first-line metastatic non-small cell lung cancer (NSCLC)?",
+    "ground_truth": "KEYNOTE-189 demonstrated that adding Pembrolizumab to pemetrexed-platinum chemotherapy extended median overall survival from 10.6 months to 22.0 months in EGFR/ALK-negative metastatic non-squamous NSCLC."
+  },
+  {
+    "id": 5,
+    "category": "Infectious Diseases",
+    "question": "What are the IDSA guideline recommendations for empiric antibiotic coverage in severe community-acquired pneumonia requiring ICU admission?",
+    "ground_truth": "IDSA guidelines mandate a beta-lactam (ceftriaxone, cefotaxime, or ampicillin-sulbactam) plus either azithromycin or a respiratory fluoroquinolone, with added MRSA and Pseudomonas coverage if risk factors exist."
+  },
+  {
+    "id": 6,
+    "category": "Cardiology",
+    "question": "How do ARNI (sacubitril/valsartan) compare to ACE inhibitors in reducing hospitalization in patients with Heart Failure with Reduced Ejection Fraction (HFrEF)?",
+    "ground_truth": "PARADIGM-HF trial showed sacubitril/valsartan reduced cardiovascular death and HF hospitalization by 20% compared to enalapril in HFrEF patients with LVEF <= 40%."
+  },
+  {
+    "id": 7,
+    "category": "Nephrology",
+    "question": "When should SGLT2 inhibitors be initiated or discontinued based on eGFR thresholds in CKD guidelines?",
+    "ground_truth": "SGLT2 inhibitors can be initiated in patients with eGFR >= 20 mL/min/1.73m² and continued until dialysis or kidney transplantation is initiated."
+  },
+  {
+    "id": 8,
+    "category": "Pharmacology",
+    "question": "What are the primary adverse drug reactions and monitoring parameters for Amiodarone in chronic atrial fibrillation therapy?",
+    "ground_truth": "Amiodarone requires routine baseline and periodic monitoring of pulmonary function tests (pulmonary toxicity), thyroid function tests (hypo/hyperthyroidism), liver enzymes (hepatotoxicity), and ECG (QT prolongation)."
+  },
+  {
+    "id": 9,
+    "category": "Endocrinology",
+    "question": "What is the recommended HbA1c target for elderly patients with multiple severe chronic comorbidities according to ADA Standards of Care?",
+    "ground_truth": "ADA guidelines recommend a relaxed HbA1c target of < 8.0% - 8.5% for older adults with complex chronic illnesses or limited life expectancy to minimize hypoglycemic events."
+  },
+  {
+    "id": 10,
+    "category": "Neurology",
+    "question": "What is the therapeutic time window for intravenous alteplase (tPA) in acute ischemic stroke according to AHA/ASA guidelines?",
+    "ground_truth": "IV tPA is recommended within 3.0 hours of symptom onset, and selectable patients up to 4.5 hours, excluding those with intracranial hemorrhage or elevated bleeding risk."
+  },
+  {
+    "id": 11,
+    "category": "Gastroenterology",
+    "question": "What are first-line eradication regimens for Helicobacter pylori infection in regions with high clarithromycin resistance?",
+    "ground_truth": "Bismuth quadruple therapy (PPI, bismuth subsalicylate, metronidazole, tetracycline) for 14 days is the preferred first-line regimen in areas with >15% clarithromycin resistance."
+  },
+  {
+    "id": 12,
+    "category": "Hematology",
+    "question": "How do Direct Oral Anticoagulants (DOACs) compare to Warfarin in non-valvular atrial fibrillation for stroke prevention?",
+    "ground_truth": "Meta-analyses of landmark trials (RE-LY, ROCKET AF, ARISTOTLE, ENGAGE AF) demonstrate DOACs are non-inferior or superior to warfarin for stroke prevention with significantly lower risk of intracranial hemorrhage."
+  },
+  {
+    "id": 13,
+    "category": "Pulmonology",
+    "question": "What is the recommended triple therapy (LAMA/LABA/ICS) role in COPD management per GOLD 2024 guidelines?",
+    "ground_truth": "GOLD 2024 recommends single-inhaler triple therapy (LAMA+LABA+ICS) for COPD Group E patients with persistent exacerbations and blood eosinophil counts >= 300 cells/µL."
+  },
+  {
+    "id": 14,
+    "category": "Rheumatology",
+    "question": "What is the first-line disease-modifying antirheumatic drug (DMARD) for moderate-to-severe Rheumatoid Arthritis?",
+    "ground_truth": "Oral Methotrexate is recommended as first-line monotherapyDMARD by ACR guidelines, supplemented with folic acid to minimize gastrointestinal and mucosal toxicity."
+  },
+  {
+    "id": 15,
+    "category": "Psychiatry",
+    "question": "What is the risk of Serotonin Syndrome when combining SSRIs with Linezolid or Tramadol?",
+    "ground_truth": "Linezolid is a non-selective MAO inhibitor and Tramadol inhibits serotonin reuptake; combining either with SSRIs significantly increases Serotonin Syndrome risk (hyperthermia, autonomic instability, hyperreflexia)."
+  },
+  {
+    "id": 16,
+    "category": "Pediatrics",
+    "question": "What are the first-line oral antibiotic choices for acute otitis media in non-penicillin-allergic pediatric patients?",
+    "ground_truth": "High-dose Amoxicillin (80-90 mg/kg/day in 2 divided doses) is the recommended first-line agent by AAP guidelines."
+  },
+  {
+    "id": 17,
+    "category": "Oncology",
+    "question": "What is the mechanism of action and primary toxicities of Trastuzumab (Herceptin) in HER2-positive breast cancer?",
+    "ground_truth": "Trastuzumab is a humanized monoclonal antibody targeting extracellular HER2; key toxicities include cardiotoxicity (decreased LVEF), infusion reactions, and pulmonary events."
+  },
+  {
+    "id": 18,
+    "category": "Dermatology",
+    "question": "What systemic biologic therapies are FDA-approved for moderate-to-severe plaque psoriasis targeting IL-23?",
+    "ground_truth": "Guselkumab, Tildrakizumab, and Risankizumab are IL-23 p19 inhibitors approved for moderate-to-severe plaque psoriasis."
+  },
+  {
+    "id": 19,
+    "category": "Obstetrics",
+    "question": "What is the recommended prophylactic medication to prevent preeclampsia in high-risk pregnant women?",
+    "ground_truth": "USPSTF recommends low-dose aspirin (81 mg/day) initiated between 12 and 28 weeks of gestation (preferably before 16 weeks) for women at high risk of preeclampsia."
+  },
+  {
+    "id": 20,
+    "category": "Critical Care",
+    "question": "What fluid resuscitation strategy is recommended in Surviving Sepsis Campaign 2021 guidelines for septic shock?",
+    "ground_truth": "Surviving Sepsis guidelines recommend at least 30 mL/kg of IV crystalloids (preferably balanced crystalloid solutions like Lactated Ringer's) within the first 3 hours of resuscitation."
+  },
+  {
+    "id": 21,
+    "category": "Endocrinology",
+    "question": "What is the management guideline for subclinical hypothyroidism in non-pregnant adults with TSH levels between 4.5 and 10 mIU/L?",
+    "ground_truth": "Routine levothyroxine is not universally required unless patients are symptomatic, have positive anti-TPO antibodies, elevated cardiovascular risk, or TSH > 10 mIU/L."
+  },
+  {
+    "id": 22,
+    "category": "Gastroenterology",
+    "question": "What is the first-line biologic class for moderate-to-severe Crohn's disease failing conventional corticosteroid therapy?",
+    "ground_truth": "Anti-TNF agents (Infliximab, Adalimumab) or anti-integrin (Vedolizumab) / anti-IL-12/23 (Ustekinumab) are first-line biologic options recommended by AGA guidelines."
+  },
+  {
+    "id": 23,
+    "category": "Infectious Diseases",
+    "question": "What is the duration of triple post-exposure prophylaxis (PEP) following occupational HIV exposure?",
+    "ground_truth": "CDC guidelines recommend a 28-day course of 3-drug antiretroviral PEP (e.g. Tenofovir disoproxil fumarate + Emtricitabine plus Raltegravir or Dolutegravir) starting within 72 hours of exposure."
+  },
+  {
+    "id": 24,
+    "category": "Cardiology",
+    "question": "What are the lipid-lowering targets for very high-risk ASCVD patients under 2023 ACC/AHA cholesterol guidelines?",
+    "ground_truth": "ACC/AHA guidelines target an LDL-C reduction of >= 50% from baseline and an absolute LDL-C threshold < 55 mg/dL using high-intensity statin plus ezetimibe or PCSK9 inhibitors."
+  },
+  {
+    "id": 25,
+    "category": "Pharmacology",
+    "question": "What is the management protocol for Warfarin-induced major life-threatening bleeding?",
+    "ground_truth": "Immediate administration of 4-factor Prothrombin Complex Concentrate (4F-PCC) plus slow intravenous Vitamin K1 (10 mg) is recommended over fresh frozen plasma."
+  }
+]
