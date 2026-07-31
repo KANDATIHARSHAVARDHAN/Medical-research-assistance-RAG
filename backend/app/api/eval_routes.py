@@ -8,11 +8,10 @@ router = APIRouter(prefix="/api/eval", tags=["RAGAS Evaluation"])
 @router.get("/metrics", response_model=RagasSummaryResponse)
 def get_ragas_metrics():
     """
-    Returns latest cached/pre-computed RAGAS evaluation summary over 25 test cases.
+    Returns pre-computed RAGAS evaluation summary instantly with 0 API calls.
     """
     try:
-        summary = ragas_evaluator.evaluate_all(test_case_ids=[1, 2, 3, 4, 5])
-        return summary
+        return ragas_evaluator.get_cached_metrics()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -24,7 +23,7 @@ def run_ragas_evaluation(request: EvalRunRequest):
     try:
         summary = ragas_evaluator.evaluate_all(
             test_case_ids=request.test_case_ids,
-            llm_model=request.llm_model or "llama-3.3-70b-versatile"
+            llm_model=request.llm_model or "llama-3.1-8b-instant"
         )
         return summary
     except Exception as e:

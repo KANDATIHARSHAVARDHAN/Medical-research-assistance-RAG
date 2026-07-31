@@ -1,4 +1,5 @@
 import os
+import time
 import requests
 from typing import Dict, Any, List
 from backend.app.config import settings
@@ -74,12 +75,35 @@ class LLMService:
                 {"role": "user", "content": prompt}
             ],
             "temperature": 0.2,
-            "max_tokens": 1500
+            "max_tokens": 750
         }
-        res = requests.post(url, headers=headers, json=payload, timeout=30)
-        res.raise_for_status()
-        data = res.json()
-        return data["choices"][0]["message"]["content"]
+
+        max_retries = 4
+        for attempt in range(max_retries):
+            res = requests.post(url, headers=headers, json=payload, timeout=30)
+            if res.status_code == 429:
+                if payload["model"] != "llama-3.1-8b-instant":
+                    print(f"[LLM SERVICE] Groq rate limit hit on {payload['model']}. Switching instantly to high-capacity llama-3.1-8b-instant model...")
+                    payload["model"] = "llama-3.1-8b-instant"
+                    continue
+
+                retry_header = res.headers.get("Retry-After")
+                raw_wait = float(retry_header) if (retry_header and retry_header.isdigit()) else (3.0 * (attempt + 1))
+                if raw_wait > 12.0 or attempt == max_retries - 1:
+                    print(f"[LLM SERVICE] Groq rate limit wait too long ({raw_wait:.1f}s). Switching to offline synthesis fallback.")
+                    return self._generate_offline_fallback(prompt)
+                
+                wait_time = min(10.0, raw_wait)
+                print(f"[LLM SERVICE] Groq rate limit hit (429). Retrying in {wait_time:.1f}s (Attempt {attempt+1}/{max_retries})...")
+                # Sleep in short 0.5s chunks so Ctrl+C cancels cleanly
+                slept = 0.0
+                while slept < wait_time:
+                    time.sleep(0.5)
+                    slept += 0.5
+                continue
+            res.raise_for_status()
+            data = res.json()
+            return data["choices"][0]["message"]["content"]
 
     def _generate_offline_fallback(self, prompt: str) -> str:
         """

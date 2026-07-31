@@ -45,9 +45,12 @@ class EmbeddingService:
             self.model = None
 
     def _call_hf_api(self, texts: List[str]) -> List[List[float]]:
-        headers = {"Authorization": f"Bearer {settings.HUGGINGFACE_API_KEY}"}
-        url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{self.model_name}"
-        response = requests.post(url, headers=headers, json={"inputs": texts, "options": {"wait_for_model": True}}, timeout=4.0)
+        headers = {
+            "Authorization": f"Bearer {settings.HUGGINGFACE_API_KEY}",
+            "Content-Type": "application/json"
+        }
+        url = f"https://router.huggingface.co/hf-inference/models/{self.model_name}"
+        response = requests.post(url, headers=headers, json={"inputs": texts}, timeout=15.0)
         if response.status_code == 200:
             data = response.json()
             if isinstance(data, list) and len(data) > 0:
@@ -55,7 +58,13 @@ class EmbeddingService:
                     return [data]
                 elif isinstance(data[0], list): # List of vectors returned
                     return data
-        raise Exception(f"HF API Error {response.status_code}: {response.text}")
+        # Fallback 768-d feature-extraction router endpoint if HF router tags model under sentence-similarity
+        res_fb = requests.post("https://router.huggingface.co/hf-inference/models/BAAI/bge-base-en-v1.5", headers=headers, json={"inputs": texts}, timeout=15.0)
+        if res_fb.status_code == 200:
+            data = res_fb.json()
+            if isinstance(data, list) and len(data) > 0:
+                return [data] if isinstance(data[0], float) else data
+        raise Exception(f"HF API Error {response.status_code}: {response.text[:200]}")
 
     def embed_query(self, text: str) -> List[float]:
         if self.use_hf_api:
@@ -63,7 +72,8 @@ class EmbeddingService:
                 res = self._call_hf_api([text])
                 return res[0]
             except Exception as e:
-                print(f"[EMBEDDING SERVICE] HF API inference fallback ({e}). Using local embedder.")
+                print(f"[EMBEDDING SERVICE] HF Cloud API unavailable ({type(e).__name__}). Switched to local embedder.")
+                self.use_hf_api = False
                 if self.model is None:
                     self._load_local_model()
 
@@ -84,7 +94,8 @@ class EmbeddingService:
             try:
                 return self._call_hf_api(texts)
             except Exception as e:
-                print(f"[EMBEDDING SERVICE] HF API inference fallback ({e}). Using local embedder.")
+                print(f"[EMBEDDING SERVICE] HF Cloud API unavailable ({type(e).__name__}). Switched to local embedder.")
+                self.use_hf_api = False
                 if self.model is None:
                     self._load_local_model()
 

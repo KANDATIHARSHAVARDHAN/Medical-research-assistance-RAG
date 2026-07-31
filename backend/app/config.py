@@ -26,6 +26,7 @@ class Settings:
     # Defaults
     DEFAULT_LLM_PROVIDER: str = os.getenv("DEFAULT_LLM_PROVIDER", "groq")
     DEFAULT_LLM_MODEL: str = os.getenv("DEFAULT_LLM_MODEL", "llama-3.3-70b-versatile")
+    RAGAS_EVAL_MODEL: str = os.getenv("RAGAS_EVAL_MODEL", "llama-3.1-8b-instant")
     
     # Pinecone Vector DB
     # PINECONE_ENVIRONMENT: Specifies cloud provider/region (e.g. us-east-1-aws, gcp-starter)
@@ -40,9 +41,9 @@ class Settings:
     VECTOR_SEARCH_WEIGHT: float = float(os.getenv("VECTOR_SEARCH_WEIGHT", "0.5"))
     BM25_SEARCH_WEIGHT: float = float(os.getenv("BM25_SEARCH_WEIGHT", "0.5"))
     
-    # Reranking & Retrieval Top K
-    TOP_K_RETRIEVAL: int = 10
-    TOP_K_RERANKED: int = 5
+    # Reranking & Retrieval Top K (Reduced top_k to 3 for concise context window & low token footprint)
+    TOP_K_RETRIEVAL: int = 8
+    TOP_K_RERANKED: int = 3
 
 settings = Settings()
 

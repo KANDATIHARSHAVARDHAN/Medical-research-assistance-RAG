@@ -10,11 +10,13 @@ class PromptTemplateBuilder:
     def build_rag_prompt(self, query: str, evidence_docs: List[Dict[str, Any]]) -> str:
         context_str = ""
         for idx, doc in enumerate(evidence_docs, start=1):
-            context_str += f"\n--- EVIDENCE DOCUMENT [{idx}] ---\n"
+            chunk_content = doc.get('chunk_text', '').strip()
+            if len(chunk_content) > 350:
+                chunk_content = chunk_content[:350] + "..."
+            context_str += f"\n--- EVIDENCE [{idx}] ---\n"
             context_str += f"Title: {doc.get('title', 'N/A')}\n"
-            context_str += f"Source/Journal: {doc.get('source', 'PubMed')} | {doc.get('journal', 'N/A')} ({doc.get('year', 'N/A')})\n"
-            context_str += f"Study Type: {doc.get('study_type', 'N/A')} | PMID: {doc.get('pmid', 'N/A')} | DOI: {doc.get('doi', 'N/A')}\n"
-            context_str += f"Content: {doc.get('chunk_text', '')}\n"
+            context_str += f"Source: {doc.get('journal', 'PubMed')} ({doc.get('year', 'N/A')})\n"
+            context_str += f"Content: {chunk_content}\n"
 
         prompt = f"""You are an elite evidence-based medical research assistant. Answer ONLY using the provided context.
 If evidence is insufficient to answer the question, clearly state so.
