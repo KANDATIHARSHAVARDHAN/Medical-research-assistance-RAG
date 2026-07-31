@@ -111,9 +111,14 @@ class PineconeVectorStore:
 
         if self.use_pinecone and pinecone_vectors:
             try:
-                # Upsert into Pinecone index
-                self.index.upsert(vectors=pinecone_vectors)
-                print(f"[PINECONE] Successfully synced {len(pinecone_vectors)} vectors with Pinecone AWS index.")
+                # Upsert into Pinecone index in batches of 100 vectors to avoid 2MB payload size limits
+                batch_size = 100
+                total_upserted = 0
+                for i in range(0, len(pinecone_vectors), batch_size):
+                    batch = pinecone_vectors[i:i + batch_size]
+                    self.index.upsert(vectors=batch)
+                    total_upserted += len(batch)
+                print(f"[PINECONE] Successfully synced {total_upserted} vectors with Pinecone AWS index in batches of {batch_size}.")
             except Exception as e:
                 print(f"[PINECONE] Upsert error ({e}). Using local in-memory fallback.")
 

@@ -23,7 +23,8 @@ def run_ragas_evaluation(request: EvalRunRequest):
     try:
         summary = ragas_evaluator.evaluate_all(
             test_case_ids=request.test_case_ids,
-            llm_model=request.llm_model or "llama-3.1-8b-instant"
+            llm_model=request.llm_model or "llama-3.3-70b-versatile",
+            llm_provider=request.llm_provider or "groq"
         )
         return summary
     except Exception as e:

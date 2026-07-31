@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BarChart3, Play, RefreshCw } from 'lucide-react';
 import { getRagasMetrics, runRagasEvaluation } from '../services/api';
 
-export default function RagasDashboard({ selectedModel }) {
+export default function RagasDashboard({ selectedModel, selectedProvider }) {
   const [metrics, setMetrics] = useState(null);
   const [loading, setLoading] = useState(false);
   const [evaluating, setEvaluating] = useState(false);
@@ -27,7 +27,10 @@ export default function RagasDashboard({ selectedModel }) {
   const handleRunEval = async () => {
     setEvaluating(true);
     try {
-      const data = await runRagasEvaluation({ llm_model: selectedModel });
+      const data = await runRagasEvaluation({
+        llm_model: selectedModel || 'llama-3.3-70b-versatile',
+        llm_provider: selectedProvider || 'groq'
+      });
       setMetrics(data);
     } catch (err) {
       alert("Evaluation failed: " + err.message);

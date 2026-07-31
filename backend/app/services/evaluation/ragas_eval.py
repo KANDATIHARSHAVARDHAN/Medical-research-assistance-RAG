@@ -69,9 +69,12 @@ class RagasEvaluator:
     def evaluate_all(
         self,
         test_case_ids: Optional[List[int]] = None,
-        llm_model: Optional[str] = None
+        llm_model: Optional[str] = None,
+        llm_provider: Optional[str] = None
     ) -> Dict[str, Any]:
-        target_model = llm_model or getattr(settings, "RAGAS_EVAL_MODEL", "llama-3.1-8b-instant")
+        target_model = llm_model or getattr(settings, "RAGAS_EVAL_MODEL", "llama-3.3-70b-versatile")
+        provider = llm_provider or getattr(settings, "LLM_PROVIDER", "groq")
+
         # Late import to prevent circular dependencies
         from backend.app.services.rag_pipeline import rag_pipeline
         
@@ -98,15 +101,18 @@ class RagasEvaluator:
             elif not current_eval_key:
                 print("[RAGAS] RAGAS_EVAL_API_KEY not set. Using built-in metric evaluator.")
 
-        for case in cases:
+        print(f"[RAGAS EVALUATION] Starting sequential evaluation of {len(cases)} test cases using provider='{provider}', model='{target_model}'...")
+
+        # Process each test case strictly 1-by-1 sequentially (no parallel requests)
+        for idx, case in enumerate(cases, 1):
             try:
                 start_t = time.time()
-                print(f"[RAGAS EVALUATION] Processing Case #{case['id']} of {len(cases)} (1-by-1 sequential): {case['question'][:65]}...")
+                print(f"[RAGAS EVALUATION] [{idx}/{len(cases)}] Processing Case #{case['id']}: {case['question'][:60]}...")
 
                 res = rag_pipeline.run_pipeline(
                     query=case["question"],
                     model_name=target_model,
-                    llm_provider="groq"
+                    llm_provider=provider
                 )
                 elapsed_ms = round((time.time() - start_t) * 1000, 2)
 
@@ -142,14 +148,29 @@ class RagasEvaluator:
                     "status": "Passed" if metrics["faithfulness"] >= 0.75 else "Review"
                 }
                 results.append(case_result)
-                # Interruptible 3.0s pacing pause between 1-by-1 sequential cases
-                for _ in range(6):
-                    time.sleep(0.5)
+                print(f"[RAGAS EVALUATION] Completed Case #{case['id']} in {elapsed_ms}ms (Faithfulness: {case_result['faithfulness']}%, Status: {case_result['status']})")
+                
+                # Pacing delay between sequential cases to respect LLM rate limits
+                time.sleep(1.0)
             except (KeyboardInterrupt, SystemExit):
                 print("\n[RAGAS EVALUATION] Ctrl+C interrupt detected! Halting evaluation suite immediately.")
                 break
             except Exception as e:
                 print(f"[RAGAS EVALUATION] Error on case #{case.get('id')}: {e}")
+                # Log graceful failure entry without crashing the loop
+                results.append({
+                    "id": case.get("id"),
+                    "query": case.get("question"),
+                    "category": case.get("category"),
+                    "ground_truth": case.get("ground_truth"),
+                    "generated_answer": f"Error during evaluation: {str(e)}",
+                    "faithfulness": 0.0,
+                    "answer_relevancy": 0.0,
+                    "context_precision": 0.0,
+                    "context_recall": 0.0,
+                    "latency_ms": 0.0,
+                    "status": "Failed"
+                })
                 continue
 
         count = max(1, len(results))

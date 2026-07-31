@@ -10,10 +10,10 @@
 | Metric | Benchmark Score | Description |
 | :--- | :---: | :--- |
 | **Faithfulness** | **100%** | Sentence Grounding Ratio against verified clinical literature |
-| **Answer Relevancy** | **94.7%** | Intent Coverage Score comparing LLM answer to clinical query |
+| **Answer Relevancy** | **94.4%** | Intent Coverage Score comparing LLM answer to clinical query |
 | **Context Precision** | **96.9%** | Signal-to-Noise ratio of 0.5 Vector / 0.5 BM25 hybrid search |
 | **Context Recall** | **93.8%** | Ground Truth Coverage ratio from retrieved evidence chunks |
-| **Avg Pipeline Latency** | **7700 ms** | Complete end-to-end hybrid retrieval, reranking & synthesis latency |
+| **Avg Pipeline Latency** | **2578.5 ms** | Complete end-to-end hybrid retrieval, reranking & synthesis latency |
 
 ---
 
@@ -116,10 +116,10 @@ This flowchart illustrates how medical credentials (`PUBMED_API_KEY`, `OPENFDA_A
 ===================================================================================================================
 
        [ API Credentials (.env) ]
-         ├── PUBMED_API_KEY=4ef4dc785651...     (Unlocks 10 requests/sec on NCBI E-utilities)
-         ├── OPENFDA_API_KEY=Q9BIBGd0zTEN...    (Unlocks 1,000 requests/min on openFDA)
-         ├── CLINICAL_TRIALS_EMAIL=...          (Authenticates ClinicalTrials.gov API v2)
-         └── HUGGINGFACE_API_KEY=hf_KKfpK...    (Authenticates HF Cloud Inference API for PubMedBERT)
+         ├── PUBMED_API_KEY=your_pubmed_api_key...     (Unlocks 10 requests/sec on NCBI E-utilities)
+         ├── OPENFDA_API_KEY=your_openfda_api_key...   (Unlocks 1,000 requests/min on openFDA)
+         ├── CLINICAL_TRIALS_EMAIL=your_email...       (Authenticates ClinicalTrials.gov API v2)
+         └── HUGGINGFACE_API_KEY=your_hf_api_key...    (Authenticates HF Cloud Inference API for PubMedBERT)
                        │
                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -187,9 +187,9 @@ DEFAULT_LLM_MODEL=llama-3.3-70b-versatile
 RAGAS_EVAL_MODEL=llama-3.1-8b-instant
 
 # Medical Data Source Credentials
-PUBMED_API_KEY=4ef4dc7856517f265462d545987cd67da408
-PUBMED_EMAIL=lskris007@gmail.com
-OPENFDA_API_KEY=Q9BIBGd0zTENe7SJ4R82zhOiiBB4viGb8QIzb2MH
+PUBMED_API_KEY=your_pubmed_api_key_here
+PUBMED_EMAIL=your_email@example.com
+OPENFDA_API_KEY=your_openfda_api_key_here
 
 # Pinecone Vector DB Configuration
 PINECONE_API_KEY=pcsk_your_pinecone_api_key_here
@@ -211,6 +211,37 @@ REACT_APP_API_URL=http://localhost:8000
 
 ---
 
+### 📥 Step-by-Step Data Ingestion into Vector Database (Pinecone AWS)
+
+To populate your Pinecone vector database (`medical-rag-index`) with clinical literature, drug monographs, and trial data from 4 live medical APIs (PubMed, ClinicalTrials.gov, openFDA, and DailyMed):
+
+```powershell
+# 1. Activate Python Virtual Environment
+.\venv\Scripts\Activate.ps1
+
+# 2. Run Data Ingestion Pipeline (Fetches live medical data across 13 specialties & upserts to Pinecone in 100-vector batches)
+python scripts/ingest_all.py --api-queries "cardiology" "neurology" "covid-19" "vaccines" "chemotherapy" "pediatrics" "asthma" "alzheimer" "diabetes" "oncology" "hypertension" "metformin" "immunotherapy" --max-per-source 10
+```
+
+---
+
+### 🧪 Executing RAGAS & DeepEval Benchmark Evaluation
+
+The evaluation framework runs **25 medical research benchmark test cases** strictly 1-by-1 sequentially:
+
+#### Option A: Via Web UI
+1. Launch FastAPI backend: `uvicorn backend.app.main:app --reload`
+2. Launch React frontend: `cd frontend && npm start`
+3. Open `http://localhost:3000`, switch to **RAGAS & DeepEval Dashboard**, and click **Run Live RAGAS Evaluation**.
+
+#### Option B: Via Terminal CLI
+```powershell
+# Run 1-by-1 sequential evaluation over all 25 benchmark cases using Groq Cloud LLM
+python -c "from backend.app.services.evaluation.ragas_eval import ragas_evaluator; summary = ragas_evaluator.evaluate_all(llm_provider='groq', llm_model='llama-3.3-70b-versatile'); print(summary)"
+```
+
+---
+
 ### Option 1: Local Development Execution (Command Prompt / CMD)
 
 If executing locally on Windows using `cmd.exe`:
@@ -226,7 +257,7 @@ venv\Scripts\activate
 pip install -r backend\requirements.txt
 
 :: 3. Run multi-source medical ingestion script
-python scripts\ingest_all.py
+python scripts\ingest_all.py --api-queries "cardiology" "neurology" "diabetes" --max-per-source 10
 
 :: 4. Launch FastAPI development server
 uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload

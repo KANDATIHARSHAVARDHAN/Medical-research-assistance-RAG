@@ -12,4 +12,5 @@ class SearchQueryRequest(BaseModel):
 
 class EvalRunRequest(BaseModel):
     test_case_ids: Optional[List[int]] = Field(None, description="List of specific test case IDs to evaluate (1-25)")
-    llm_model: Optional[str] = Field("llama-3.3-70b-versatile", description="LLM model to use during RAGAS evaluation")
+    llm_model: Optional[str] = Field("llama-3.3-70b-versatile", description="Groq Cloud LLM model for evaluation")
+    llm_provider: Optional[str] = Field("groq", description="Groq Cloud provider")
